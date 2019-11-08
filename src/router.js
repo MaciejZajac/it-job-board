@@ -5,6 +5,7 @@ import { Router as BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
+
 const Router = () => {
     return (
         <BrowserRouter history={history}>
