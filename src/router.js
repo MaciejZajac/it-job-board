@@ -1,9 +1,10 @@
 import React from "react";
 import App from "./App";
 import Layout from "./components/HOC/Layout";
-import { Router as BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
+import Login from "./components/login/Login";
 const history = createBrowserHistory();
 
 const Router = () => {
@@ -11,8 +12,11 @@ const Router = () => {
         <BrowserRouter history={history}>
             <Layout>
                 <Switch>
-                    <Route exact='/' component={App} />
-                    <Route exact='/home' component={App} />
+                    <Route exact path='/' component={App} />
+                    <Route exact path='/post-offer' component={Login} />
+                    <Route exact path='/register' component={Login} />
+                    <Route exact path='/login' component={Login} />
+                    {/* <Route exact='/home' component={App} /> */}
                 </Switch>
             </Layout>
         </BrowserRouter>
