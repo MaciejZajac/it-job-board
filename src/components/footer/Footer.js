@@ -11,9 +11,9 @@ export default class Footer extends React.Component {
                             <Link to='/about' className='footer__link'>
                                 About
                             </Link>
-                            <Link to='/motivation' className='footer__link'>
+                            {/* <Link to='/motivation' className='footer__link'>
                                 Motivation
-                            </Link>
+                            </Link> */}
                         </ul>
                     </div>
                     <div>

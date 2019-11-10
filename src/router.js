@@ -5,6 +5,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
 import Login from "./components/login/Login";
+import Contact from "./components/contact/Contact";
+import About from "./components/about/About";
+import Page404 from "./components/page404/Page404";
 const history = createBrowserHistory();
 
 const Router = () => {
@@ -16,6 +19,10 @@ const Router = () => {
                     <Route exact path='/post-offer' component={Login} />
                     <Route exact path='/register' component={Login} />
                     <Route exact path='/login' component={Login} />
+                    <Route exact path='/about' component={About} />
+                    <Route exact path='/contact' component={Contact} />
+                    <Route component={Page404} />
+                    {/* <Route exact path='/motivation' component={Login} /> */}
                     {/* <Route exact='/home' component={App} /> */}
                 </Switch>
             </Layout>
