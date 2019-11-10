@@ -10,6 +10,11 @@
     &__list-item {
         border-left: 2px solid red;
         border-bottom: 1px solid gray;
+        background-color: rgba(230, 230, 230, 0.1);
+
+        &:hover {
+            background-color: #fff;
+        }
     }
 
     &__main {
