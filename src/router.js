@@ -3,13 +3,12 @@ import App from "./App";
 import Layout from "./components/HOC/Layout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { createBrowserHistory } from "history";
 import Login from "./components/login/Login";
 import Contact from "./components/contact/Contact";
 import About from "./components/about/About";
 import Page404 from "./components/page404/Page404";
 import Register from "./components/login/Register";
-const history = createBrowserHistory();
+import history from "./history";
 
 const Router = () => {
     return (

@@ -5,10 +5,12 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.handleLogin = this.handleLogin.bind(this);
     }
 
-    handleLogin(e) {
+    async handleLogin(e) {
         e.preventDefault();
     }
     render() {
