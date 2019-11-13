@@ -33,8 +33,8 @@ export default class Reset extends React.Component {
   }
 
   validation() {
-    const result = true;
     const { password, confirmPassword } = this.state;
+    let result = true;
     if (
       password.length < 4 ||
       password.toString() !== confirmPassword.toString()
