@@ -41,7 +41,6 @@ class Login extends React.Component {
     e.preventDefault();
 
     if (this.validation()) {
-      console.log("this.login", this.state);
       const result = await Auth.loginHandler(
         this.state.login,
         this.state.password
