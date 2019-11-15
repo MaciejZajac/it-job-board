@@ -11,6 +11,7 @@ import Register from "./components/login/Register";
 import history from "./history";
 import ResetPassword from "./components/login/ResetPassword";
 import Reset from "./components/login/Reset";
+import AddOffer from "./components/OfferList/AddOffer";
 
 const Router = () => {
   return (
@@ -18,7 +19,7 @@ const Router = () => {
       <Layout>
         <Switch>
           <Route exact path="/" component={App} />
-          <Route exact path="/post-offer" component={Login} />
+          <Route exact path="/post-offer" component={AddOffer} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetPassword" component={ResetPassword} />

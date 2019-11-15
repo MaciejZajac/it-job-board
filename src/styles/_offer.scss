@@ -1,60 +1,60 @@
 .offer {
-    &-container {
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-    &__list {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    &__list-item {
-        border-left: 2px solid red;
-        border-bottom: 1px solid gray;
-        background-color: rgba(230, 230, 230, 0.1);
+  &-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  &__list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  &__list-item {
+    border-left: 2px solid red;
+    border-bottom: 1px solid gray;
+    background-color: rgba(230, 230, 230, 0.1);
 
-        &:hover {
-            background-color: #fff;
-        }
+    &:hover {
+      background-color: #fff;
     }
+  }
 
-    &__main {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px;
-        align-items: center;
-    }
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    align-items: center;
+  }
 
-    &__logo {
-        padding: 5px;
-        padding-right: 15px;
-    }
+  &__logo {
+    padding: 5px;
+    padding-right: 15px;
+  }
 
-    &__details {
-        padding: 15px;
-        display: flex;
-        align-items: center;
-    }
+  &__details {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+  }
 
-    // &__job {
-    //     &-title {
-    //         font-size: 20px;
-    //         font-weight: 700;
-    //     }
-    //     &-adress {
-    //     }
-    // }
-    &__address {
-        // justify-self: flex-end;
+  // &__job {
+  //     &-title {
+  //         font-size: 20px;
+  //         font-weight: 700;
+  //     }
+  //     &-adress {
+  //     }
+  // }
+  &__address {
+    // justify-self: flex-end;
+  }
+  &__payment {
+    padding: 0 10px;
+  }
+  &__tech {
+    padding: 10px 0;
+    &-item {
+      border: 1px solid $black;
+      padding: 5px;
+      border-radius: 5px;
     }
-    &__payment {
-        padding: 0 10px;
-    }
-    &__tech {
-        padding: 10px 0;
-        &-item {
-            border: 1px solid black;
-            padding: 5px;
-            border-radius: 5px;
-        }
-    }
+  }
 }

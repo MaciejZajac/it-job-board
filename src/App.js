@@ -1,8 +1,7 @@
 import React from "react";
 import OfferList from "./components/OfferList/OfferList";
-import { connect } from "react-redux";
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div className="body">
@@ -13,5 +12,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default connect()(App);

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ValidationService from "../../Services/ValidationService";
-import AuthService from "../../Services/AuthService";
-import { ConstantsEnum } from "../../constants/Constants";
+import { setUserInfo } from "../../actions";
+import Validation from "../../Helpers/Validation";
+import Auth from "../../API/Auth";
 
 class Login extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Login extends React.Component {
 
   validation() {
     let result = true;
-    if (!ValidationService.validateEmail(this.state.login)) {
+    if (!Validation.validateEmail(this.state.login)) {
       result = false;
     }
     if (this.state.password.length < 4) {
@@ -41,14 +41,20 @@ class Login extends React.Component {
     e.preventDefault();
 
     if (this.validation()) {
-      const result = await AuthService.loginHandler(
+      console.log("this.login", this.state);
+      const result = await Auth.loginHandler(
         this.state.login,
         this.state.password
       );
-      this.props.dispatch({
-        type: ConstantsEnum.SET_USER_TOKEN,
-        token: result.data.login.token
-      });
+      const { userId, token } = result.data.login;
+
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("userId", userId);
+      // const remainingMilliseconds = 60 * 60 * 1000;
+      // const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+      // sessionStorage.setItem("expiryDate", expiryDate);
+      this.props.setUserInfo({ isAuth: true, token, userId });
+
       this.props.history.push("/");
     }
   }
@@ -91,4 +97,12 @@ class Login extends React.Component {
   }
 }
 
-export default connect()(Login);
+function mapStateToProps(state) {}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setUserInfo: user => dispatch(setUserInfo(user))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);

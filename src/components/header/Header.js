@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { clearUserInfo } from "../../actions";
 
 class Header extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Header extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogout() {
-    console.log("wylogowano.");
+    this.props.clearUserInfo();
   }
   render() {
     return (
@@ -41,10 +42,14 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
   return {
     token: state.reducer.token
   };
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    clearUserInfo: () => dispatch(clearUserInfo())
+  };
+}
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

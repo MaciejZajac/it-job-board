@@ -1,0 +1,47 @@
+.form {
+  min-height: 400px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__input {
+    padding: 10px 15px;
+    min-width: 220px;
+    color: $black;
+    border: none;
+    background-color: #f2f2f2;
+    margin: 10px 0;
+  }
+  &__btn {
+    border: none;
+    padding: 10px 15px;
+    color: $black;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+}
+
+.login {
+  min-height: 80vh;
+  max-width: 500px;
+  margin: 0 auto;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+
+  &__input {
+    margin: 10px 0;
+    padding: 5px 10px;
+  }
+  &__btn {
+    padding: 5px 10px;
+    margin: 10px 0;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import ValidationService from "../../Services/ValidationService";
-import AuthService from "../../Services/AuthService";
+import Validation from "../../Helpers/Validation";
+import Auth from "../../API/Auth";
 
 export default class ResetPassword extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class ResetPassword extends React.Component {
     let result = true;
 
     const { email } = this.state;
-    if (!ValidationService.validateEmail(email)) {
+    if (!Validation.validateEmail(email)) {
       result = false;
     }
 
@@ -37,8 +37,7 @@ export default class ResetPassword extends React.Component {
   async handlePasswordChange(e) {
     e.preventDefault();
     if (this.checkValidation()) {
-      const result = await AuthService.resetPassword(this.state.email);
-      console.log("result resetPassword", result);
+      const result = await Auth.resetPassword(this.state.email);
     }
   }
 

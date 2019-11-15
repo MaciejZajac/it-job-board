@@ -1,6 +1,6 @@
 import React from "react";
-import ValidationService from "../../Services/ValidationService";
-import AuthService from "../../Services/AuthService";
+import Auth from "../../API/Auth";
+import Validation from "../../Helpers/Validation";
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -24,9 +24,7 @@ export default class Register extends React.Component {
       try {
         const { email, password } = this.state;
 
-        const response = await AuthService.registerHandler(email, password);
-        console.log("response", response);
-
+        const response = await Auth.registerHandler(email, password);
         this.props.history.push("/login");
       } catch (err) {
         console.log("err", err);
@@ -37,7 +35,7 @@ export default class Register extends React.Component {
     let result = true;
 
     const { email, password, confirmPassword } = this.state;
-    if (!ValidationService.validateEmail(email)) {
+    if (!Validation.validateEmail(email)) {
       result = false;
     }
     if (password.length < 3 || password !== confirmPassword) {
