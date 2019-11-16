@@ -20,3 +20,10 @@ export function addOfferRequest(payload) {
     payload
   };
 }
+
+export function setActiveOffer(payload) {
+  return {
+    type: ConstantsEnum.SET_ACTIVE_OFFER,
+    payload
+  };
+}

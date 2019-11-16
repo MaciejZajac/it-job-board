@@ -18,11 +18,7 @@ export default class Reset extends React.Component {
     e.preventDefault();
 
     if (this.validation()) {
-      // console.log("poprawiam hasło!");
-      // console.log(
-      //   "this.props.match.params.token",
-      //   this.props.match.params.token
-      // );
+      //
     }
   }
 

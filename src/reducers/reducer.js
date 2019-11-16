@@ -17,6 +17,9 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { isAuth: false, token: "", userId: "" });
     case ConstantsEnum.ADD_NEW_OFFER:
       return Object.assign({}, state, {});
+
+    case ConstantsEnum.SET_ACTIVE_OFFER:
+      return Object.assign({}, state, { activeOffer: action.payload });
     default:
       return state;
   }

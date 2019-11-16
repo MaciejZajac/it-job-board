@@ -11,12 +11,15 @@ class Login extends React.Component {
 
     this.state = {
       login: "",
-      password: ""
+      password: "",
+      isActive: ""
     };
 
     this.handleLogin = this.handleLogin.bind(this);
     this.validation = this.validation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFocusAction = this.handleFocusAction.bind(this);
+    this.handleBlurAction = this.handleBlurAction.bind(this);
   }
 
   handleInputChange(e) {
@@ -37,46 +40,83 @@ class Login extends React.Component {
     return result;
   }
 
+  handleFocusAction(e) {
+    this.setState({
+      isActive: e.target.name
+    });
+  }
+  handleBlurAction(e) {
+    this.setState({
+      isActive: ""
+    });
+  }
+
   async handleLogin(e) {
     e.preventDefault();
 
     if (this.validation()) {
-      const result = await Auth.loginHandler(
-        this.state.login,
-        this.state.password
-      );
-      const { userId, token } = result.data.login;
+      let result;
+      try {
+        result = await Auth.loginHandler(this.state.login, this.state.password);
+        const { userId, token } = result.data.login;
 
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("userId", userId);
-      // const remainingMilliseconds = 60 * 60 * 1000;
-      // const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
-      // sessionStorage.setItem("expiryDate", expiryDate);
-      this.props.setUserInfo({ isAuth: true, token, userId });
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("userId", userId);
+        // const remainingMilliseconds = 60 * 60 * 1000;
+        // const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+        // sessionStorage.setItem("expiryDate", expiryDate);
+        this.props.setUserInfo({ isAuth: true, token, userId });
 
-      this.props.history.push("/");
+        this.props.history.push("/");
+      } catch (err) {
+        console.log("err", err);
+      }
     }
   }
   render() {
     return (
       <div className="login">
         <form className="login__form">
-          <input
-            className="login__input"
-            name="login"
-            type="text"
-            placeholder="Email..."
-            value={this.state.login}
-            onChange={this.handleInputChange}
-          />
-          <input
-            className="login__input"
-            type="password"
-            name="password"
-            placeholder="Hasło..."
-            value={this.state.password}
-            onChange={this.handleInputChange}
-          />
+          <div className="form__input-container">
+            <span
+              className={`form__input-placeholder ${
+                this.state.isActive === "login" || this.state.login
+                  ? "form__input-placeholder--active"
+                  : ""
+              }`}
+            >
+              Login
+            </span>
+            <input
+              className="login__input"
+              name="login"
+              type="text"
+              value={this.state.login}
+              onChange={this.handleInputChange}
+              onFocus={this.handleFocusAction}
+              onBlur={this.handleBlurAction}
+            />
+          </div>
+          <div className="form__input-container">
+            <span
+              className={`form__input-placeholder ${
+                this.state.isActive === "password" || this.state.password
+                  ? "form__input-placeholder--active"
+                  : ""
+              }`}
+            >
+              Hasło
+            </span>
+            <input
+              className="login__input"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              onFocus={this.handleFocusAction}
+              onBlur={this.handleBlurAction}
+            />
+          </div>
           <button
             className="login__btn"
             type="submit"

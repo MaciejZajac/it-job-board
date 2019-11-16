@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import { setUserInfo } from "../../actions/index";
 
 class Layout extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
     const token = sessionStorage.getItem("token");
     const userId = sessionStorage.getItem("userId");
-    console.log("token", token);
     if (!token || !userId) {
       return;
       // this.props.setUserInfo({ isAuth: false, token: "", userId: ""})

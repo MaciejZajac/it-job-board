@@ -25,4 +25,33 @@ export default class Offer {
       body: JSON.stringify(graphqlQuery)
     });
   }
+
+  static async getOfferList(token) {
+    const graphqlQuery = {
+      query: `
+        query {
+          getOfferList {
+            jobOffers {
+              _id
+              companyCity
+              jobTitle
+              companyName
+            }
+          }
+        }
+      `
+    };
+    return fetch("http://localhost:8080/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify(graphqlQuery)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .catch(err => console.log(err));
+  }
 }

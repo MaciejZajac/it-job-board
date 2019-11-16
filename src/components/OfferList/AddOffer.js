@@ -39,11 +39,20 @@ class AddOffer extends React.Component {
   async handleAddOfferRequest() {
     //
     if (this.validation()) {
-      const response = await Offer.addNewOffer(
-        { ...this.state },
-        this.props.token
-      );
-      console.log("response", response);
+      try {
+        const response = await Offer.addNewOffer(
+          { ...this.state },
+          this.props.token
+        );
+        this.props.history.push("/");
+        // this.setState({
+        //   companyName: "",
+        //   jobTitle: "",
+        //   companyCity: ""
+        // })
+      } catch (err) {
+        console.log("err", err);
+      }
     }
   }
 
@@ -96,7 +105,6 @@ class AddOffer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state ADDOFFER", state);
   return {
     token: state.reducer.token
   };
