@@ -5,6 +5,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log("state", state);
   switch (action.type) {
     case ConstantsEnum.SET_USER_INFO:
       return Object.assign({}, state, {

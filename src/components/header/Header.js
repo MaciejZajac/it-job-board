@@ -20,6 +20,12 @@ class Header extends Component {
             <Link to="/" className="nav__logo">
               LOGO
             </Link>
+            {console.log("this.props.isAuth", this.props.isAuth)}
+            {this.props.isAuth && (
+              <Link to="/dashboard" className="nav__link">
+                Dashboard
+              </Link>
+            )}
           </div>
           <div>
             <Link to="/post-offer" className="nav__link">
@@ -43,7 +49,8 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    token: state.reducer.token
+    token: state.reducer.token,
+    isAuth: state.reducer.isAuth
   };
 }
 function mapDispatchToProps(dispatch) {

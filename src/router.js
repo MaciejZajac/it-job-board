@@ -12,6 +12,7 @@ import history from "./history";
 import ResetPassword from "./components/login/ResetPassword";
 import Reset from "./components/login/Reset";
 import AddOffer from "./components/OfferList/AddOffer";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/resetPassword" component={ResetPassword} />
           <Route exact path="/reset/:token" component={Reset} />
+          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
           <Route component={Page404} />
