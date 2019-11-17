@@ -13,9 +13,16 @@ class Dashboard extends React.Component {
 
     this.editOffer = this.editOffer.bind(this);
     this.deleteOffer = this.deleteOffer.bind(this);
+    this.getPrivateOfferListAndUser = this.getPrivateOfferListAndUser.bind(
+      this
+    );
   }
 
   async componentDidMount() {
+    this.getPrivateOfferListAndUser();
+  }
+
+  async getPrivateOfferListAndUser() {
     try {
       if (!this.props.token) {
         return;
@@ -40,6 +47,7 @@ class Dashboard extends React.Component {
     }
     try {
       const response = await Offer.deleteOneOffer({ id }, this.props.token);
+      await this.getPrivateOfferListAndUser();
       console.log("Response", response);
     } catch (err) {
       console.log("err", err);

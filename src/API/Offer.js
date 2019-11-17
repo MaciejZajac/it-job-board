@@ -92,7 +92,9 @@ export default class Offer {
     const graphqlQuery = {
       query: `
           mutation {
-
+            deleteOneOffer(id: "${id}") {
+              result
+            }
           }
         `
     };
