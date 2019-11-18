@@ -68,9 +68,7 @@ class Login extends React.Component {
         this.props.setUserInfo({ isAuth: true, token, userId });
 
         this.props.history.push("/");
-      } catch (err) {
-        console.log("err", err);
-      }
+      } catch (err) {}
     }
   }
   render() {

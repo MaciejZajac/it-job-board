@@ -1,3 +1,31 @@
+export const getJobOffers = params => {
+  const graphqlQuery = {
+    query: `
+            query {
+              getOfferList {
+                jobOffers {
+                  _id
+                  companyCity
+                  jobTitle
+                  companyName
+                }
+              }
+            }
+          `
+  };
+  return fetch("http://localhost:8080/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(graphqlQuery)
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {});
+};
+
 export default class Offer {
   static async addNewOffer({ companyName, companyCity, jobTitle }, token) {
     const graphqlQuery = {
@@ -24,34 +52,6 @@ export default class Offer {
       },
       body: JSON.stringify(graphqlQuery)
     });
-  }
-
-  static async getOfferList() {
-    const graphqlQuery = {
-      query: `
-        query {
-          getOfferList {
-            jobOffers {
-              _id
-              companyCity
-              jobTitle
-              companyName
-            }
-          }
-        }
-      `
-    };
-    return fetch("http://localhost:8080/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(graphqlQuery)
-    })
-      .then(res => {
-        return res.json();
-      })
-      .catch(err => console.log(err));
   }
 
   static async getPrivateOfferListAndUser(token) {
@@ -84,11 +84,10 @@ export default class Offer {
       .then(res => {
         return res.json();
       })
-      .catch(err => console.log(err));
+      .catch(err => {});
   }
 
   static async deleteOneOffer({ id }, token) {
-    console.log("id", id);
     const graphqlQuery = {
       query: `
           mutation {
@@ -109,6 +108,6 @@ export default class Offer {
       .then(res => {
         return res.json();
       })
-      .catch(err => console.log(err));
+      .catch(err => {});
   }
 }

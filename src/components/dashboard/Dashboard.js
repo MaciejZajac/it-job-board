@@ -32,26 +32,20 @@ class Dashboard extends React.Component {
         offerList: response.data.getPrivateOfferList.jobOffers,
         user: { ...response.data.getUserInfo }
       });
-    } catch (err) {
-      console.log("err", err);
-    }
+    } catch (err) {}
   }
 
   editOffer(id) {
-    console.log("id", id);
+    //
   }
   async deleteOffer(id) {
-    console.log("delete", id);
     if (!id) {
       return;
     }
     try {
       const response = await Offer.deleteOneOffer({ id }, this.props.token);
       await this.getPrivateOfferListAndUser();
-      console.log("Response", response);
-    } catch (err) {
-      console.log("err", err);
-    }
+    } catch (err) {}
   }
   render() {
     const { offerList, user } = this.state;

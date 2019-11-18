@@ -27,3 +27,9 @@ export function setActiveOffer(payload) {
     payload
   };
 }
+
+export function getJobOffers(payload) {
+  return {
+    type: ConstantsEnum.GET_JOBS_OFFERS
+  };
+}

@@ -20,7 +20,7 @@ export default class Auth {
       .then(res => {
         return res.json();
       })
-      .catch(err => console.log(err));
+      .catch(err => {});
   }
 
   static async registerHandler(email, password) {
@@ -48,7 +48,7 @@ export default class Auth {
       .then(res => {
         return res.json();
       })
-      .catch(err => console.log("err", err));
+      .catch(err => {});
   }
 
   // Does not working. Yet.
@@ -74,7 +74,7 @@ export default class Auth {
         return res.json();
       })
       .catch(err => {
-        console.log("err", err);
+        // g("err", err);
       });
   }
 }

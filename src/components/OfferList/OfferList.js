@@ -2,24 +2,14 @@ import React from "react";
 import OfferListItem from "./OfferListItem";
 import Offer from "../../API/Offer";
 import { connect } from "react-redux";
+import { getJobOffers } from "../../actions";
 
 class OfferList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      offerList: []
-    };
   }
   async componentDidMount() {
-    try {
-      const offerList = await Offer.getOfferList(this.props.token);
-      this.setState({
-        offerList: offerList.data.getOfferList.jobOffers
-      });
-    } catch (err) {
-      console.log("err", err);
-    }
+    this.props.getJobOffers();
   }
 
   render() {
@@ -27,9 +17,10 @@ class OfferList extends React.Component {
       <div className="offer">
         <div className="offer-container">
           <ul className="offer__list">
-            {this.state.offerList.map(item => {
-              return <OfferListItem key={item._id} item={item} />;
-            })}
+            {this.props.jobOffers &&
+              this.props.jobOffers.map(item => {
+                return <OfferListItem key={item._id} item={item} />;
+              })}
           </ul>
         </div>
       </div>
@@ -37,10 +28,17 @@ class OfferList extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapDispatchToProps(dispatch) {
   return {
-    token: state.reducer.token
+    getJobOffers: () => dispatch(getJobOffers())
   };
 }
 
-export default connect(mapStateToProps)(OfferList);
+function mapStateToProps(state) {
+  return {
+    token: state.reducer.token,
+    jobOffers: state.reducer.jobOffers
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OfferList);

@@ -50,9 +50,7 @@ class AddOffer extends React.Component {
         //   jobTitle: "",
         //   companyCity: ""
         // })
-      } catch (err) {
-        console.log("err", err);
-      }
+      } catch (err) {}
     }
   }
 

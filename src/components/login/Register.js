@@ -26,9 +26,7 @@ export default class Register extends React.Component {
 
         const response = await Auth.registerHandler(email, password);
         this.props.history.push("/login");
-      } catch (err) {
-        console.log("err", err);
-      }
+      } catch (err) {}
     }
   }
   checkValidation() {

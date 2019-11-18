@@ -20,7 +20,6 @@ class Header extends Component {
             <Link to="/" className="nav__logo">
               LOGO
             </Link>
-            {console.log("this.props.isAuth", this.props.isAuth)}
             {this.props.isAuth && (
               <Link to="/dashboard" className="nav__link">
                 Dashboard
