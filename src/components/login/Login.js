@@ -55,9 +55,10 @@ class Login extends React.Component {
 
     if (this.validation()) {
       try {
-        console.log("this.state.login", this.state.login);
-        console.log("this.state.password", this.state.password);
-        await this.props.loginHandler(this.state.login, this.state.password);
+        await this.props.loginHandler({
+          login: this.state.login,
+          password: this.state.password
+        });
         // const { userId, token } = result.data.login;
         // sessionStorage.setItem("token", token);
         // sessionStorage.setItem("userId", userId);
@@ -135,6 +136,7 @@ class Login extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log("state", state);
   return {
     //
   };
@@ -142,7 +144,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginHandler: (email, password) => dispatch(loginHandler(email, password))
+    loginHandler: loginData => dispatch(loginHandler(loginData))
   };
 }
 

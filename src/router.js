@@ -32,6 +32,7 @@ const ProtectedRoute = ({
 
 class Router extends React.Component {
   render() {
+    console.log("this.props.isAuthenticated", this.props.isAuthenticated);
     return (
       <BrowserRouter history={history}>
         <Layout>
@@ -63,7 +64,7 @@ class Router extends React.Component {
 function mapStateToProps(state) {
   console.log("state", state);
   return {
-    isAuthenticated: state.authReducer.isAuth
+    isAuthenticated: state.authReducer.token && state.authReducer.userId
   };
 }
 

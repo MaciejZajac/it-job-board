@@ -1,7 +1,7 @@
 import {
   SET_USER_INFO,
   CLEAR_USER_INFO,
-  LOGIN_HANDLER
+  LOGIN_HANDLER_REQUEST
 } from "../constants/AuthConstants";
 
 export const setUserInfo = payload => {
@@ -19,9 +19,8 @@ export const clearUserInfo = payload => {
 };
 
 export const loginHandler = payload => {
-  console.log("payload", payload);
   return {
-    type: LOGIN_HANDLER,
+    type: LOGIN_HANDLER_REQUEST,
     payload
   };
 };
