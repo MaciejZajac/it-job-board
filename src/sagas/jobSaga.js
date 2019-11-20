@@ -1,0 +1,33 @@
+import { call, put } from "redux-saga/effects";
+import { getJobOffers, addNewOffer } from "../API/Offer";
+import {
+  GET_JOBS_OFFERS_SUCCEEDED,
+  GET_JOBS_OFFERS_FAILED,
+  ADD_NEW_OFFER_SUCCEDED,
+  ADD_NEW_OFFER_FAILED
+} from "../constants/JobsConstants";
+// import { getJobOffers }
+
+export function* getJobOffersHandler({ payload }) {
+  try {
+    const data = yield call(getJobOffers, payload);
+    yield put({
+      type: GET_JOBS_OFFERS_SUCCEEDED,
+      jobOffers: data.data.getOfferList.jobOffers
+    });
+  } catch (e) {
+    yield put({ type: GET_JOBS_OFFERS_FAILED, message: e });
+  }
+}
+
+export function* addNewOfferHandler({ payload }) {
+  try {
+    const data = yield call(addNewOffer, payload);
+    yield put({
+      type: ADD_NEW_OFFER_SUCCEDED,
+      jobOffers: data.data.getOfferList.jobOffers
+    });
+  } catch (e) {
+    yield put({ type: ADD_NEW_OFFER_FAILED, message: e });
+  }
+}

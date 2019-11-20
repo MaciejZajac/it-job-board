@@ -1,8 +1,9 @@
 import React from "react";
 import Validation from "../../Helpers/Validation";
-import Auth from "../../API/Auth";
+import { resetPassword } from "../../API/Auth";
+import { connect } from "react-redux";
 
-export default class ResetPassword extends React.Component {
+class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
 
@@ -37,7 +38,7 @@ export default class ResetPassword extends React.Component {
   async handlePasswordChange(e) {
     e.preventDefault();
     if (this.checkValidation()) {
-      const result = await Auth.resetPassword(this.state.email);
+      await this.props.resetPassword(this.state.email);
     }
   }
 
@@ -65,3 +66,15 @@ export default class ResetPassword extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  //
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    resetPassword: email => dispatch(resetPassword(email))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);

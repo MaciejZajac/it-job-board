@@ -1,7 +1,7 @@
 import React from "react";
 import OfferDetails from "./OfferDetails";
 import { connect } from "react-redux";
-import { setActiveOffer } from "../../actions";
+import { setActiveOffer } from "../../actions/offerActions";
 
 class OfferListItem extends React.Component {
   constructor(props) {
@@ -55,8 +55,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  console.log("state", state);
   return {
-    activeOffer: state.reducer.activeOffer
+    // activeOffer: state.reducer.activeOffer
   };
 }
 

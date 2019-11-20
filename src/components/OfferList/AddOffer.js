@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Offer from "../../API/Offer";
-import { getUserInfo } from "../../actions";
+import { addNewOffer } from "../../API/Offer";
 class AddOffer extends React.Component {
   constructor(props) {
     super(props);
@@ -40,10 +39,7 @@ class AddOffer extends React.Component {
     //
     if (this.validation()) {
       try {
-        const response = await Offer.addNewOffer(
-          { ...this.state },
-          this.props.token
-        );
+        await this.props.addNewOffer({ ...this.state }, this.props.token);
         this.props.history.push("/");
         // this.setState({
         //   companyName: "",
@@ -101,11 +97,17 @@ class AddOffer extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
+function mapDispatchToProps(dispatch) {
   return {
-    token: state.reducer.token
+    addNewOffer: ({ companyName, jobTitle, companyCity }, token) =>
+      dispatch(addNewOffer({ companyName, jobTitle, companyCity }, token))
+  };
+}
+function mapStateToProps(state) {
+  console.log("state", state);
+  return {
+    token: state.authReducer.token
   };
 }
 
-export default connect(mapStateToProps)(AddOffer);
+export default connect(mapStateToProps, mapDispatchToProps)(AddOffer);

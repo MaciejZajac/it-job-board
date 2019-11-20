@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUserInfo } from "../../actions";
 import Validation from "../../Helpers/Validation";
-import Auth from "../../API/Auth";
+import { loginHandler } from "../../actions/authActions";
 
 class Login extends React.Component {
   constructor(props) {
@@ -55,20 +54,21 @@ class Login extends React.Component {
     e.preventDefault();
 
     if (this.validation()) {
-      let result;
       try {
-        result = await Auth.loginHandler(this.state.login, this.state.password);
-        const { userId, token } = result.data.login;
-
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("userId", userId);
+        console.log("this.state.login", this.state.login);
+        console.log("this.state.password", this.state.password);
+        await this.props.loginHandler(this.state.login, this.state.password);
+        // const { userId, token } = result.data.login;
+        // sessionStorage.setItem("token", token);
+        // sessionStorage.setItem("userId", userId);
         // const remainingMilliseconds = 60 * 60 * 1000;
         // const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
         // sessionStorage.setItem("expiryDate", expiryDate);
-        this.props.setUserInfo({ isAuth: true, token, userId });
-
-        this.props.history.push("/");
-      } catch (err) {}
+        // this.props.setUserInfo({ isAuth: true, token, userId });
+        // this.props.history.push("/");
+      } catch (err) {
+        //
+      }
     }
   }
   render() {
@@ -134,12 +134,16 @@ class Login extends React.Component {
   }
 }
 
-function mapStateToProps(state) {}
-
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    setUserInfo: user => dispatch(setUserInfo(user))
+    //
   };
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+function mapDispatchToProps(dispatch) {
+  return {
+    loginHandler: (email, password) => dispatch(loginHandler(email, password))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

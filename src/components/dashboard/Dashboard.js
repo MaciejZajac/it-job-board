@@ -1,5 +1,5 @@
 import React from "react";
-import Offer from "../../API/Offer";
+import { getPrivateOfferListAndUser, deleteOneOffer } from "../../API/Offer";
 import { connect } from "react-redux";
 
 class Dashboard extends React.Component {
@@ -27,24 +27,21 @@ class Dashboard extends React.Component {
       if (!this.props.token) {
         return;
       }
-      const response = await Offer.getPrivateOfferListAndUser(this.props.token);
-      this.setState({
-        offerList: response.data.getPrivateOfferList.jobOffers,
-        user: { ...response.data.getUserInfo }
-      });
+      await this.props.getPrivateOfferListAndUser(this.props.token);
     } catch (err) {}
   }
 
   editOffer(id) {
     //
   }
+
   async deleteOffer(id) {
     if (!id) {
       return;
     }
     try {
-      const response = await Offer.deleteOneOffer({ id }, this.props.token);
-      await this.getPrivateOfferListAndUser();
+      await this.props.deleteOneOffer({ id }, this.props.token);
+      // await this.getPrivateOfferListAndUser();
     } catch (err) {}
   }
   render() {
@@ -91,10 +88,21 @@ class Dashboard extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapDispatchToProps(dispatch) {
   return {
-    token: state.reducer.token
+    getPrivateOfferListAndUser: token =>
+      dispatch(getPrivateOfferListAndUser(token)),
+    deleteOneOffer: ({ id }, token) => dispatch(deleteOneOffer({ id }, token))
   };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+function mapStateToProps(state) {
+  console.log("state", state);
+  return {
+    // token: state.reducer.token,
+    // offerList: state.reducer.offerList,
+    // user: state.reducer.user
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -1,8 +1,7 @@
 import React from "react";
 import OfferListItem from "./OfferListItem";
-import Offer from "../../API/Offer";
 import { connect } from "react-redux";
-import { getJobOffers } from "../../actions";
+import { getJobOffers } from "../../actions/offerActions";
 
 class OfferList extends React.Component {
   constructor(props) {
@@ -36,8 +35,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    token: state.reducer.token,
-    jobOffers: state.reducer.jobOffers
+    jobOffers: state.offerReducer.jobOffers
   };
 }
 

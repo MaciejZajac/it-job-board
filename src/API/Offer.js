@@ -26,88 +26,86 @@ export const getJobOffers = params => {
     .catch(err => {});
 };
 
-export default class Offer {
-  static async addNewOffer({ companyName, companyCity, jobTitle }, token) {
-    const graphqlQuery = {
-      query: `
-        mutation {
-          addNewOffer(userInput: {
-            companyName: "${companyName}",
-            companyCity: "${companyCity}",
-            jobTitle: "${jobTitle}"
-          }) {
+export const addNewOffer = ({ companyName, companyCity, jobTitle }, token) => {
+  const graphqlQuery = {
+    query: `
+      mutation {
+        addNewOffer(userInput: {
+          companyName: "${companyName}",
+          companyCity: "${companyCity}",
+          jobTitle: "${jobTitle}"
+        }) {
+          _id
+          jobTitle
+          companyCity
+          companyName
+        }
+      }
+    `
+  };
+  return fetch("http://localhost:8080/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify(graphqlQuery)
+  });
+};
+
+export const getPrivateOfferListAndUser = token => {
+  const graphqlQuery = {
+    query: `
+      query {
+        getPrivateOfferList {
+          jobOffers {
             _id
-            jobTitle
             companyCity
+            jobTitle
             companyName
           }
         }
-      `
-    };
-    await fetch("http://localhost:8080/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
-      },
-      body: JSON.stringify(graphqlQuery)
-    });
-  }
-
-  static async getPrivateOfferListAndUser(token) {
-    const graphqlQuery = {
-      query: `
-        query {
-          getPrivateOfferList {
-            jobOffers {
-              _id
-              companyCity
-              jobTitle
-              companyName
-            }
-          }
-          getUserInfo {
-            _id
-            email
-          }
+        getUserInfo {
+          _id
+          email
         }
-      `
-    };
-    return fetch("http://localhost:8080/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
-      },
-      body: JSON.stringify(graphqlQuery)
+      }
+    `
+  };
+  return fetch("http://localhost:8080/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify(graphqlQuery)
+  })
+    .then(res => {
+      return res.json();
     })
-      .then(res => {
-        return res.json();
-      })
-      .catch(err => {});
-  }
+    .catch(err => {});
+};
 
-  static async deleteOneOffer({ id }, token) {
-    const graphqlQuery = {
-      query: `
+export const deleteOneOffer = ({ id }, token) => {
+  const graphqlQuery = {
+    query: `
           mutation {
             deleteOneOffer(id: "${id}") {
               result
             }
           }
         `
-    };
-    return fetch("http://localhost:8080/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
-      },
-      body: JSON.stringify(graphqlQuery)
+  };
+  return fetch("http://localhost:8080/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify(graphqlQuery)
+  })
+    .then(res => {
+      return res.json();
     })
-      .then(res => {
-        return res.json();
-      })
-      .catch(err => {});
-  }
-}
+    .catch(err => {});
+};

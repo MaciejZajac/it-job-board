@@ -1,8 +1,9 @@
 import React from "react";
-import Auth from "../../API/Auth";
 import Validation from "../../Helpers/Validation";
+import { connect } from "react-redux";
+import { registerHandler } from "../../API/Auth";
 
-export default class Register extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,10 +24,12 @@ export default class Register extends React.Component {
     if (this.checkValidation()) {
       try {
         const { email, password } = this.state;
+        await this.props.registerHandler(email, password);
 
-        const response = await Auth.registerHandler(email, password);
         this.props.history.push("/login");
-      } catch (err) {}
+      } catch (err) {
+        //
+      }
     }
   }
   checkValidation() {
@@ -88,3 +91,16 @@ export default class Register extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  //
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    registerHandler: (user, password) =>
+      dispatch(registerHandler(user, password))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

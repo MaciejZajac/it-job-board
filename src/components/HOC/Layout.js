@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { connect } from "react-redux";
-import { setUserInfo } from "../../actions/index";
+import { setUserInfo } from "../../actions/authActions";
 
 class Layout extends React.Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Layout extends React.Component {
 
     const token = sessionStorage.getItem("token");
     const userId = sessionStorage.getItem("userId");
+
     if (!token || !userId) {
       return;
       // this.props.setUserInfo({ isAuth: false, token: "", userId: ""})

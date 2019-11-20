@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { clearUserInfo } from "../../actions";
+import { clearUserInfo } from "../../actions/authActions";
 
-class Header extends Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
 
@@ -47,9 +47,10 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("state HEADER", state);
   return {
-    token: state.reducer.token,
-    isAuth: state.reducer.isAuth
+    token: state.authReducer.token,
+    isAuth: state.authReducer.isAuth
   };
 }
 function mapDispatchToProps(dispatch) {
