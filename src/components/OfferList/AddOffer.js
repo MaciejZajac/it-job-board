@@ -104,7 +104,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 function mapStateToProps(state) {
-  console.log("state", state);
   return {
     token: state.authReducer.token
   };

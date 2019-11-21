@@ -1,7 +1,9 @@
 import {
   ADD_NEW_OFFER_REQUEST,
   SET_ACTIVE_OFFER,
-  GET_JOBS_OFFERS_REQUEST
+  GET_JOBS_OFFERS_REQUEST,
+  GET_PRIVATE_JOBS_REQUEST,
+  DELETE_OFFER_REQUEST
 } from "../constants/JobsConstants";
 
 export const addOfferRequest = payload => {
@@ -21,5 +23,22 @@ export const setActiveOffer = payload => {
 export const getJobOffers = payload => {
   return {
     type: GET_JOBS_OFFERS_REQUEST
+  };
+};
+
+export const getPrivateJobOffers = payload => {
+  return {
+    type: GET_PRIVATE_JOBS_REQUEST,
+    payload
+  };
+};
+
+export const deleteOneOffer = payload => {
+  console.log("payload", payload);
+
+  // @@@@@
+  return {
+    type: DELETE_OFFER_REQUEST,
+    payload
   };
 };

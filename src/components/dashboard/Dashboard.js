@@ -1,5 +1,9 @@
 import React from "react";
-import { getPrivateOfferListAndUser, deleteOneOffer } from "../../API/Offer";
+// import { getPrivateOfferList, deleteOneOffer } from "../../API/Offer";
+import {
+  getPrivateJobOffers,
+  deleteOneOffer
+} from "../../actions/offerActions";
 import { connect } from "react-redux";
 
 class Dashboard extends React.Component {
@@ -13,21 +17,19 @@ class Dashboard extends React.Component {
 
     this.editOffer = this.editOffer.bind(this);
     this.deleteOffer = this.deleteOffer.bind(this);
-    this.getPrivateOfferListAndUser = this.getPrivateOfferListAndUser.bind(
-      this
-    );
+    this.getPrivateOfferList = this.getPrivateOfferList.bind(this);
   }
 
   async componentDidMount() {
-    this.getPrivateOfferListAndUser();
+    this.getPrivateOfferList();
   }
 
-  async getPrivateOfferListAndUser() {
+  async getPrivateOfferList() {
     try {
       if (!this.props.token) {
         return;
       }
-      await this.props.getPrivateOfferListAndUser(this.props.token);
+      await this.props.getPrivateJobOffers(this.props.token);
     } catch (err) {}
   }
 
@@ -40,12 +42,14 @@ class Dashboard extends React.Component {
       return;
     }
     try {
-      await this.props.deleteOneOffer({ id }, this.props.token);
+      await this.props.deleteOneOffer({ id, token: this.props.token });
       // await this.getPrivateOfferListAndUser();
     } catch (err) {}
   }
   render() {
-    const { offerList, user } = this.state;
+    const { offerList, user } = this.props;
+    console.log("offerList", offerList);
+    console.log("user", user);
     return (
       <div className="dashboard">
         <div className="dashboard__container">
@@ -59,27 +63,28 @@ class Dashboard extends React.Component {
           <div className="dashboard__panel">
             <div className="dashboard__offer-list">
               <h4 className="dashboard__header">Your current job offers: </h4>
-              {offerList.map(item => {
-                return (
-                  <div key={item._id} className="dashboard__offer-list-item">
-                    <div>{item.jobTitle}</div>
-                    <div>
-                      <button
-                        onClick={() => this.editOffer(item._id)}
-                        className="dashboard__btn"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => this.deleteOffer(item._id)}
-                        className="dashboard__btn dashboard__btn--delete"
-                      >
-                        Delete
-                      </button>
+              {offerList &&
+                offerList.map(item => {
+                  return (
+                    <div key={item._id} className="dashboard__offer-list-item">
+                      <div>{item.jobTitle}</div>
+                      <div>
+                        <button
+                          onClick={() => this.editOffer(item._id)}
+                          className="dashboard__btn"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => this.deleteOffer(item._id)}
+                          className="dashboard__btn dashboard__btn--delete"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -90,18 +95,17 @@ class Dashboard extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPrivateOfferListAndUser: token =>
-      dispatch(getPrivateOfferListAndUser(token)),
-    deleteOneOffer: ({ id }, token) => dispatch(deleteOneOffer({ id }, token))
+    getPrivateJobOffers: token => dispatch(getPrivateJobOffers(token)),
+    deleteOneOffer: ({ id, token }) => dispatch(deleteOneOffer({ id, token }))
   };
 }
 
 function mapStateToProps(state) {
   console.log("state", state);
   return {
-    // token: state.reducer.token,
-    // offerList: state.reducer.offerList,
-    // user: state.reducer.user
+    token: state.authReducer.token,
+    offerList: state.offerReducer.privateJobOffers,
+    user: state.authReducer.user
   };
 }
 

@@ -32,7 +32,6 @@ const ProtectedRoute = ({
 
 class Router extends React.Component {
   render() {
-    console.log("this.props.isAuthenticated", this.props.isAuthenticated);
     return (
       <BrowserRouter history={history}>
         <Layout>
@@ -41,14 +40,20 @@ class Router extends React.Component {
             <ProtectedRoute
               exact
               path="/post-offer"
-              isAuthenticated={this.props.isAuthenticated}
+              isAuthenticated={this.props.token}
               component={AddOffer}
             />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/resetPassword" component={ResetPassword} />
             <Route exact path="/reset/:token" component={Reset} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoute
+              exact
+              path="/dashboard"
+              isAuthenticated={this.props.token}
+              component={Dashboard}
+            />
+
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route component={Page404} />
@@ -64,7 +69,7 @@ class Router extends React.Component {
 function mapStateToProps(state) {
   console.log("state", state);
   return {
-    isAuthenticated: state.authReducer.token && state.authReducer.userId
+    token: state.authReducer.token
   };
 }
 

@@ -53,7 +53,7 @@ export const addNewOffer = ({ companyName, companyCity, jobTitle }, token) => {
   });
 };
 
-export const getPrivateOfferListAndUser = token => {
+export const getPrivateOfferList = token => {
   const graphqlQuery = {
     query: `
       query {
@@ -64,10 +64,6 @@ export const getPrivateOfferListAndUser = token => {
             jobTitle
             companyName
           }
-        }
-        getUserInfo {
-          _id
-          email
         }
       }
     `
@@ -86,7 +82,9 @@ export const getPrivateOfferListAndUser = token => {
     .catch(err => {});
 };
 
-export const deleteOneOffer = ({ id }, token) => {
+export const deleteOneOffer = (id, token) => {
+  console.log("id", id);
+  console.log("token", token);
   const graphqlQuery = {
     query: `
           mutation {

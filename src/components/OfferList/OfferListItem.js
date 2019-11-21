@@ -55,9 +55,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
   return {
-    // activeOffer: state.reducer.activeOffer
+    activeOffer: state.offerReducer.activeOffer
   };
 }
 

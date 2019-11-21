@@ -5,6 +5,7 @@ export const loginHandler = (login, password) => {
             login(email: "${login}", password: "${password}") {
               token
               userId
+              email
             }
           }
         `

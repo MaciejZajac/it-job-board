@@ -5,7 +5,13 @@ import {
   SET_ACTIVE_OFFER,
   ADD_NEW_OFFER_REQUEST,
   ADD_NEW_OFFER_SUCCEDED,
-  ADD_NEW_OFFER_FAILED
+  ADD_NEW_OFFER_FAILED,
+  GET_PRIVATE_JOBS_REQUEST,
+  GET_PRIVATE_JOBS_SUCCEDED,
+  GET_PRIVATE_JOBS_FAILED,
+  DELETE_OFFER_REQUEST,
+  DELETE_OFFER_SUCCEDED,
+  DELETE_OFFER_FAILED
 } from "../constants/JobsConstants";
 
 const offerReducer = (state = {}, action) => {
@@ -15,9 +21,9 @@ const offerReducer = (state = {}, action) => {
 
     // trzy przypadki: ZAWOŁANIE, SUKCES, PORAŻKA
     case GET_JOBS_OFFERS_REQUEST:
-      return { ...state, getBooksErrors: null };
+      return { ...state };
     case GET_JOBS_OFFERS_SUCCEEDED:
-      return { ...state, jobOffers: action.jobOffers };
+      return { ...state, jobOffers: action.jobOffers, getBooksErrors: null };
     case GET_JOBS_OFFERS_FAILED:
       return {
         ...state,
@@ -25,10 +31,31 @@ const offerReducer = (state = {}, action) => {
       };
 
     case ADD_NEW_OFFER_REQUEST:
-      return { ...state };
+      return { ...state, addNewOfferErrors: null };
     case ADD_NEW_OFFER_SUCCEDED:
-      return { ...state };
+      console.log("Action", action);
+      return { ...state, addNewOfferErrors: null };
     case ADD_NEW_OFFER_FAILED:
+      return { ...state, addNewOfferErrors: action.message };
+
+    case GET_PRIVATE_JOBS_REQUEST:
+      return { ...state };
+    case GET_PRIVATE_JOBS_SUCCEDED:
+      console.log("Action", action);
+      return {
+        ...state,
+        getPrivateJobsErrors: null,
+        privateJobOffers: action.privateJobOffers
+      };
+    case GET_PRIVATE_JOBS_FAILED:
+      return { ...state, getPrivateJobsErrors: action.message };
+
+    case DELETE_OFFER_REQUEST:
+      return { ...state };
+    case DELETE_OFFER_SUCCEDED:
+      console.log("Action", action);
+      return { ...state };
+    case DELETE_OFFER_FAILED:
       return { ...state };
 
     default:

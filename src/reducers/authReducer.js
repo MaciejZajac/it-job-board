@@ -3,30 +3,32 @@ import {
   CLEAR_USER_INFO,
   LOGIN_HANDLER_REQUEST,
   LOGIN_HANDLER_SUCCESS,
-  LOGIN_HANDLER_FAILED
+  LOGIN_HANDLER_FAILED,
+  SET_USER_TOKEN
 } from "../constants/AuthConstants";
 
 const authReducer = (state = {}, action) => {
-  // console.log("state", state);
-  // console.log("action", action);
-
   switch (action.type) {
+    case SET_USER_TOKEN:
+      return { ...state, token: action.payload };
     case SET_USER_INFO:
-      return Object.assign({}, state, {
-        ...action.payload
-      });
+      return { ...state, user: { ...action.payload } };
     case CLEAR_USER_INFO:
-      localStorage.removeItem("token");
-      localStorage.removeItem("expiryDate");
-      localStorage.removeItem("userId");
-      return Object.assign({}, state, { isAuth: false, token: "", userId: "" });
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("user");
+      return { ...state, token: "" };
     case LOGIN_HANDLER_REQUEST:
       return { ...state };
     case LOGIN_HANDLER_SUCCESS:
-      console.log("action", action);
+      const user = {
+        userId: action.user.userId,
+        email: action.user.email
+      };
+      sessionStorage.setItem("token", action.user.token);
+      sessionStorage.setItem("user", JSON.stringify(user));
       return {
         ...state,
-        user: { token: action.user.token, userId: action.user.userId }
+        user: action.userId
       };
     case LOGIN_HANDLER_FAILED:
       return { ...state };

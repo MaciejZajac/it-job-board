@@ -20,7 +20,7 @@ class Header extends React.Component {
             <Link to="/" className="nav__logo">
               LOGO
             </Link>
-            {this.props.isAuth && (
+            {this.props.token && (
               <Link to="/dashboard" className="nav__link">
                 Dashboard
               </Link>
@@ -47,10 +47,8 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state HEADER", state);
   return {
-    token: state.authReducer.token,
-    isAuth: state.authReducer.isAuth
+    token: state.authReducer.token
   };
 }
 function mapDispatchToProps(dispatch) {

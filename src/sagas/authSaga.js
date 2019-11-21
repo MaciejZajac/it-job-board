@@ -1,21 +1,22 @@
 import { call, put } from "redux-saga/effects";
 import { loginHandler } from "../API/Auth";
-import history from "../history";
 import {
   LOGIN_HANDLER_SUCCESS,
   LOGIN_HANDLER_FAILED,
   REGISTER_HANDLER_SUCCESS,
-  REGISTER_HANDLER_FAILED
+  REGISTER_HANDLER_FAILED,
+  SET_USER_TOKEN
 } from "../constants/AuthConstants";
 
 export function* loginRequestHandler({ payload }) {
   try {
     const data = yield call(loginHandler, payload.login, payload.password);
+    console.log("data", data);
+    yield put({ type: SET_USER_TOKEN, token: data.data.login.token });
     yield put({
       type: LOGIN_HANDLER_SUCCESS,
       user: data.data.login
     });
-    history.push("/");
   } catch (e) {
     yield put({ type: LOGIN_HANDLER_FAILED, message: e });
   }
