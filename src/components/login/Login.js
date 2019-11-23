@@ -66,7 +66,6 @@ class Login extends React.Component {
         // const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
         // sessionStorage.setItem("expiryDate", expiryDate);
         // this.props.setUserInfo({ isAuth: true, token, userId });
-        // this.props.history.push("/");
       } catch (err) {
         //
       }

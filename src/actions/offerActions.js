@@ -34,8 +34,6 @@ export const getPrivateJobOffers = payload => {
 };
 
 export const deleteOneOffer = payload => {
-  console.log("payload", payload);
-
   // @@@@@
   return {
     type: DELETE_OFFER_REQUEST,

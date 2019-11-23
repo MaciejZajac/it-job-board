@@ -8,9 +8,13 @@
     margin: 0 auto;
   }
   &__list-item {
-    border-left: 2px solid red;
+    border-left: 2px solid $blue;
     border-bottom: 1px solid gray;
     background-color: rgba(230, 230, 230, 0.1);
+
+    &--active {
+      background-color: #fff;
+    }
 
     &:hover {
       background-color: #fff;

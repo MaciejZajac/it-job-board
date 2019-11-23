@@ -11,23 +11,28 @@
   }
 
   &__logo {
+    text-decoration: none;
+    color: $blue;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 35px;
     padding: 0 15px;
   }
 
   &__link {
     padding: 8px 15px;
     margin: 0 5px;
-    border: 1px solid $black;
+    border: 1px solid $blue;
     border-radius: 5px;
     color: $white;
-    background-color: $black;
+    background-color: $blue;
 
     transition: background-color 0.25s ease-in-out;
 
     text-decoration: none;
 
     &:hover {
-      color: $black;
+      color: $blue;
       background-color: $white;
     }
   }

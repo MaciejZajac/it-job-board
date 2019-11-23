@@ -12,7 +12,7 @@ export function* loginRequestHandler({ payload }) {
   try {
     const data = yield call(loginHandler, payload.login, payload.password);
     console.log("data", data);
-    yield put({ type: SET_USER_TOKEN, token: data.data.login.token });
+    yield put({ type: SET_USER_TOKEN, payload: data.data.login.token });
     yield put({
       type: LOGIN_HANDLER_SUCCESS,
       user: data.data.login

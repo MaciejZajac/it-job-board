@@ -18,7 +18,7 @@ class Header extends React.Component {
         <div className="nav-container">
           <div>
             <Link to="/" className="nav__logo">
-              LOGO
+              Into.IT
             </Link>
             {this.props.token && (
               <Link to="/dashboard" className="nav__link">

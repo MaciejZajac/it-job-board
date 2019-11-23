@@ -83,8 +83,6 @@ export const getPrivateOfferList = token => {
 };
 
 export const deleteOneOffer = (id, token) => {
-  console.log("id", id);
-  console.log("token", token);
   const graphqlQuery = {
     query: `
           mutation {

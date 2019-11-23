@@ -4,12 +4,17 @@ import {
   LOGIN_HANDLER_REQUEST,
   LOGIN_HANDLER_SUCCESS,
   LOGIN_HANDLER_FAILED,
-  SET_USER_TOKEN
+  SET_USER_TOKEN,
+  REGISTER_HANDLER_REQUEST,
+  REGISTER_HANDLER_SUCCESS,
+  REGISTER_HANDLER_FAILED
 } from "../constants/AuthConstants";
+import history from "../history";
 
 const authReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_USER_TOKEN:
+      console.log("action", action);
       return { ...state, token: action.payload };
     case SET_USER_INFO:
       return { ...state, user: { ...action.payload } };
@@ -31,6 +36,14 @@ const authReducer = (state = {}, action) => {
         user: action.userId
       };
     case LOGIN_HANDLER_FAILED:
+      return { ...state };
+
+    case REGISTER_HANDLER_REQUEST:
+      return { ...state };
+    case REGISTER_HANDLER_SUCCESS:
+      history.push("/");
+      return { ...state };
+    case REGISTER_HANDLER_FAILED:
       return { ...state };
     default:
       return state;

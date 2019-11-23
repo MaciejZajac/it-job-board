@@ -33,7 +33,6 @@ const offerReducer = (state = {}, action) => {
     case ADD_NEW_OFFER_REQUEST:
       return { ...state, addNewOfferErrors: null };
     case ADD_NEW_OFFER_SUCCEDED:
-      console.log("Action", action);
       return { ...state, addNewOfferErrors: null };
     case ADD_NEW_OFFER_FAILED:
       return { ...state, addNewOfferErrors: action.message };
@@ -41,7 +40,6 @@ const offerReducer = (state = {}, action) => {
     case GET_PRIVATE_JOBS_REQUEST:
       return { ...state };
     case GET_PRIVATE_JOBS_SUCCEDED:
-      console.log("Action", action);
       return {
         ...state,
         getPrivateJobsErrors: null,
@@ -53,7 +51,6 @@ const offerReducer = (state = {}, action) => {
     case DELETE_OFFER_REQUEST:
       return { ...state };
     case DELETE_OFFER_SUCCEDED:
-      console.log("Action", action);
       return { ...state };
     case DELETE_OFFER_FAILED:
       return { ...state };

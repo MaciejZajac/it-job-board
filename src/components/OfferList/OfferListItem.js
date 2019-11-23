@@ -10,7 +10,10 @@ class OfferListItem extends React.Component {
     this.handleToggleChange = this.handleToggleChange.bind(this);
   }
   handleToggleChange(id) {
-    if (this.props.activeOffer === this.props.item._id) {
+    if (
+      this.props.activeOffer &&
+      this.props.activeOffer._id === this.props.item._id
+    ) {
       this.props.setActiveOffer();
     } else {
       this.props.setActiveOffer(id);
@@ -22,8 +25,12 @@ class OfferListItem extends React.Component {
 
     return (
       <li
-        className="offer__list-item"
-        onClick={() => this.handleToggleChange(item._id)}
+        className={`offer__list-item ${
+          this.props.activeOffer && this.props.activeOffer._id === item._id
+            ? "offer__list-item--active"
+            : ""
+        }`}
+        onClick={() => this.handleToggleChange(item)}
       >
         <div className="offer__main">
           <div className="offer__details">
@@ -42,7 +49,9 @@ class OfferListItem extends React.Component {
             </div> */}
           <div className="offer__address">{item.city}</div>
         </div>
-        {this.props.activeOffer === item._id && <OfferDetails item={item} />}
+        {this.props.activeOffer && this.props.activeOffer._id === item._id && (
+          <OfferDetails item={item} />
+        )}
       </li>
     );
   }
@@ -50,7 +59,7 @@ class OfferListItem extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setActiveOffer: id => dispatch(setActiveOffer(id))
+    setActiveOffer: offer => dispatch(setActiveOffer(offer))
   };
 }
 

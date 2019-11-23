@@ -11,7 +11,7 @@ class Layout extends React.Component {
     const token = sessionStorage.getItem("token");
     const user = JSON.parse(sessionStorage.getItem("user"));
     console.log("token", token);
-    console.log("user", user);
+    console.log("seur", user);
     if (!token || !user.userId) {
       return;
       // this.props.setUserInfo({ isAuth: false, token: "", userId: ""})
@@ -26,11 +26,17 @@ class Layout extends React.Component {
       <>
         <Header />
         {this.props.children}
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }
 }
+
+// function mapStateToProps(state) {
+//   return {
+//     user: state.authReducer.user
+//   };
+// }
 
 function mapDispatchToProps(dispatch) {
   return {

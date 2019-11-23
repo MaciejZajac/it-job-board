@@ -40,7 +40,6 @@ class AddOffer extends React.Component {
     if (this.validation()) {
       try {
         await this.props.addNewOffer({ ...this.state }, this.props.token);
-        this.props.history.push("/");
         // this.setState({
         //   companyName: "",
         //   jobTitle: "",

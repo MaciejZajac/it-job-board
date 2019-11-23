@@ -11,8 +11,11 @@ import {
   GET_PRIVATE_JOBS_REQUEST,
   DELETE_OFFER_REQUEST
 } from "../constants/JobsConstants";
-import { LOGIN_HANDLER_REQUEST } from "../constants/AuthConstants";
-import { loginRequestHandler } from "./authSaga";
+import {
+  LOGIN_HANDLER_REQUEST,
+  REGISTER_HANDLER_REQUEST
+} from "../constants/AuthConstants";
+import { loginRequestHandler, registerRequestHandler } from "./authSaga";
 
 function* sagas() {
   yield takeLatest(GET_JOBS_OFFERS_REQUEST, getJobOffersHandler);
@@ -20,6 +23,7 @@ function* sagas() {
   yield takeLatest(LOGIN_HANDLER_REQUEST, loginRequestHandler);
   yield takeLatest(GET_PRIVATE_JOBS_REQUEST, getPrivateJobOffersHandler);
   yield takeLatest(DELETE_OFFER_REQUEST, deleteOneOfferHandler);
+  yield takeLatest(REGISTER_HANDLER_REQUEST, registerRequestHandler);
   // yield takeLatest(GET_JOBS_OFFERS, getJobOffersHandler);
 }
 

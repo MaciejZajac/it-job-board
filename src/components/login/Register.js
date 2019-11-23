@@ -1,7 +1,7 @@
 import React from "react";
 import Validation from "../../Helpers/Validation";
 import { connect } from "react-redux";
-import { registerHandler } from "../../API/Auth";
+import { registerHandler } from "../../actions/authActions";
 
 class Register extends React.Component {
   constructor(props) {
@@ -24,9 +24,7 @@ class Register extends React.Component {
     if (this.checkValidation()) {
       try {
         const { email, password } = this.state;
-        await this.props.registerHandler(email, password);
-
-        this.props.history.push("/login");
+        await this.props.registerHandler({ email, password });
       } catch (err) {
         //
       }
@@ -98,8 +96,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    registerHandler: (user, password) =>
-      dispatch(registerHandler(user, password))
+    registerHandler: ({ user, password }) =>
+      dispatch(registerHandler({ user, password }))
   };
 }
 
