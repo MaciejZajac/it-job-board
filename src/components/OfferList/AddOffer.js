@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addNewOffer } from "../../API/Offer";
+import { addOfferRequest } from "../../actions/offerActions";
 class AddOffer extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,10 @@ class AddOffer extends React.Component {
     //
     if (this.validation()) {
       try {
-        await this.props.addNewOffer({ ...this.state }, this.props.token);
+        await this.props.addOfferRequest({
+          ...this.state,
+          token: this.props.token
+        });
         // this.setState({
         //   companyName: "",
         //   jobTitle: "",
@@ -98,8 +101,8 @@ class AddOffer extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    addNewOffer: ({ companyName, jobTitle, companyCity }, token) =>
-      dispatch(addNewOffer({ companyName, jobTitle, companyCity }, token))
+    addOfferRequest: ({ companyName, jobTitle, companyCity }, token) =>
+      dispatch(addOfferRequest({ companyName, jobTitle, companyCity }, token))
   };
 }
 function mapStateToProps(state) {

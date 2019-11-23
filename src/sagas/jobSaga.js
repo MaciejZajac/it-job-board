@@ -32,6 +32,7 @@ export function* getJobOffersHandler({ payload }) {
 export function* addNewOfferHandler({ payload }) {
   try {
     const data = yield call(addNewOffer, payload);
+    console.log("data", data);
     yield put({
       type: ADD_NEW_OFFER_SUCCEDED,
       jobOffers: data.data.getOfferList.jobOffers

@@ -30,6 +30,7 @@ const offerReducer = (state = {}, action) => {
         getBooksErrors: action.message
       };
 
+    // dodawanie nowej oferty
     case ADD_NEW_OFFER_REQUEST:
       return { ...state, addNewOfferErrors: null };
     case ADD_NEW_OFFER_SUCCEDED:
@@ -37,6 +38,7 @@ const offerReducer = (state = {}, action) => {
     case ADD_NEW_OFFER_FAILED:
       return { ...state, addNewOfferErrors: action.message };
 
+    // pobieranie prywatnej listy ofert
     case GET_PRIVATE_JOBS_REQUEST:
       return { ...state };
     case GET_PRIVATE_JOBS_SUCCEDED:
@@ -48,6 +50,7 @@ const offerReducer = (state = {}, action) => {
     case GET_PRIVATE_JOBS_FAILED:
       return { ...state, getPrivateJobsErrors: action.message };
 
+    // usuwanie oferty pracy
     case DELETE_OFFER_REQUEST:
       return { ...state };
     case DELETE_OFFER_SUCCEDED:

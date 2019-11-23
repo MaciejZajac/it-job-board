@@ -48,6 +48,7 @@ class Dashboard extends React.Component {
   }
   render() {
     const { offerList, user } = this.props;
+    console.log("user", user);
     return (
       <div className="dashboard">
         <div className="dashboard__container">
@@ -99,6 +100,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  console.log("state", state);
   return {
     token: state.authReducer.token,
     offerList: state.offerReducer.privateJobOffers,

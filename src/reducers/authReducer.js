@@ -13,15 +13,20 @@ import history from "../history";
 
 const authReducer = (state = {}, action) => {
   switch (action.type) {
+    // ustawienie tokenu
     case SET_USER_TOKEN:
-      console.log("action", action);
       return { ...state, token: action.payload };
+
+    // ustawienie użytkownika
     case SET_USER_INFO:
       return { ...state, user: { ...action.payload } };
+    // wylogowanie użytkownika
     case CLEAR_USER_INFO:
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("user");
       return { ...state, token: "" };
+
+    // logowanie użytkownika
     case LOGIN_HANDLER_REQUEST:
       return { ...state };
     case LOGIN_HANDLER_SUCCESS:
@@ -33,11 +38,12 @@ const authReducer = (state = {}, action) => {
       sessionStorage.setItem("user", JSON.stringify(user));
       return {
         ...state,
-        user: action.userId
+        user: user
       };
     case LOGIN_HANDLER_FAILED:
       return { ...state };
 
+    // rejestracja użytkownika
     case REGISTER_HANDLER_REQUEST:
       return { ...state };
     case REGISTER_HANDLER_SUCCESS:

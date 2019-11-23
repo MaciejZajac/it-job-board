@@ -10,8 +10,6 @@ class Layout extends React.Component {
 
     const token = sessionStorage.getItem("token");
     const user = JSON.parse(sessionStorage.getItem("user"));
-    console.log("token", token);
-    console.log("seur", user);
     if (!token || !user.userId) {
       return;
       // this.props.setUserInfo({ isAuth: false, token: "", userId: ""})
