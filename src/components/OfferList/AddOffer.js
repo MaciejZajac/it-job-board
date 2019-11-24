@@ -7,7 +7,9 @@ class AddOffer extends React.Component {
     this.state = {
       companyName: "",
       jobTitle: "",
-      companyCity: ""
+      companyCity: "",
+      companyDescription: "",
+      jobDescription: ""
     };
 
     this.validation = this.validation.bind(this);
@@ -43,11 +45,6 @@ class AddOffer extends React.Component {
           ...this.state,
           token: this.props.token
         });
-        // this.setState({
-        //   companyName: "",
-        //   jobTitle: "",
-        //   companyCity: ""
-        // })
       } catch (err) {}
     }
   }
@@ -56,38 +53,79 @@ class AddOffer extends React.Component {
     const { companyName, jobTitle, companyCity } = this.state;
     return (
       <div className="form">
-        <input
-          name="companyName"
-          type="text"
-          placeholder="Nazwa firmy..."
-          className="form__input"
-          value={companyName}
-          onChange={this.handleInputChange}
-        />
-        <input
-          name="jobTitle"
-          type="text"
-          placeholder="Nazwa stanowiska..."
-          className="form__input"
-          value={jobTitle}
-          onChange={this.handleInputChange}
-        />
-        <input
-          name="companyCity"
-          type="text"
-          placeholder="Miasto..."
-          className="form__input"
-          value={companyCity}
-          onChange={this.handleInputChange}
-        />
-        {/* <select name="companySize">
-          <option value="0to10">0 - 10</option>
-          <option value="10to50">10 - 50</option>
-          <option value="50to100">50 - 100</option>
-          <option value="100to500">100 - 500</option>
-          <option value="500to">500+</option>
-        </select> */}
-        {/* <textarea name="companyDescription" placeholder="Opis firmy" /> */}
+        <div className="form__main-info">
+          <div style={{ width: "25%" }}>
+            <input
+              type="file"
+              name="compnayLogo"
+              className="form__input-logo"
+            />
+          </div>
+          <div style={{ width: "75%" }}>
+            <div>
+              <input
+                name="jobTitle"
+                type="text"
+                placeholder="Nazwa stanowiska..."
+                className="form__input"
+                value={jobTitle}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                name="companyName"
+                type="text"
+                placeholder="Nazwa firmy..."
+                className="form__input"
+                value={companyName}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div>
+              <input
+                name="companyCity"
+                type="text"
+                placeholder="Miasto..."
+                className="form__input"
+                value={companyCity}
+                onChange={this.handleInputChange}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="form__second-info">
+          <div>
+            <select name="companySize">
+              <option value="0to10">0 - 10</option>
+              <option value="10to50">10 - 50</option>
+              <option value="50to100">50 - 100</option>
+              <option value="100to500">100 - 500</option>
+              <option value="500to">500+</option>
+            </select>
+          </div>
+          <div className="form__textarea-container">
+            <h4>Company description</h4>
+            <textarea
+              name="companyDescription"
+              placeholder="Opis firmy"
+              className="form__textarea"
+              value={this.state.companyDescription}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="form__textarea-container">
+            <h4>Opis stanowiska</h4>
+            <textarea
+              name="jobDescription"
+              placeholder="Opis stanowiska"
+              className="form__textarea"
+              value={this.state.jobDescription}
+              onChange={this.handleInputChange}
+            />
+          </div>
+        </div>
+
         <button
           type="submit"
           className="form__btn"

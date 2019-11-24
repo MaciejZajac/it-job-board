@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
           <div className="dashboard__menu">
             <h1>Profile</h1>
             <br />
-            <div>Email: {user.email}</div>
+            <div>Email: {user && user.email}</div>
             {/* <div>City: {user.companyCity}</div>
             <div>Company: {user.companyName}</div> */}
           </div>

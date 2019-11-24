@@ -3,3 +3,18 @@
     @content;
   }
 }
+body {
+  font-family: "Oswals", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.font-normal {
+  font-size: 19px;
+  font-weight: 500;
+}

@@ -20,11 +20,11 @@ class Header extends React.Component {
             <Link to="/" className="nav__logo">
               Into.IT
             </Link>
-            {this.props.token && (
-              <Link to="/dashboard" className="nav__link">
-                Dashboard
-              </Link>
-            )}
+            {/* {this.props.token && ( */}
+            <Link to="/dashboard" className="nav__link">
+              Dashboard
+            </Link>
+            {/* )} */}
           </div>
           <div>
             <Link to="/post-offer" className="nav__link">

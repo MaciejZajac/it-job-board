@@ -5,12 +5,14 @@
   }
   &__list {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
   }
   &__list-item {
-    border-left: 2px solid $blue;
-    border-bottom: 1px solid gray;
+    margin-bottom: 25px;
+    border-left: 4px solid $blue;
     background-color: rgba(230, 230, 230, 0.1);
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 
     &--active {
       background-color: #fff;
@@ -29,14 +31,21 @@
   }
 
   &__logo {
-    padding: 5px;
-    padding-right: 15px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__details {
-    padding: 15px;
-    display: flex;
-    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+    &-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
   }
 
   // &__job {
@@ -47,18 +56,45 @@
   //     &-adress {
   //     }
   // }
-  &__address {
-    // justify-self: flex-end;
-  }
   &__payment {
-    padding: 0 10px;
+    padding: 8px 0;
+    font-size: 16px;
+    color: rgb(99, 99, 99);
   }
+
   &__tech {
-    padding: 10px 0;
     &-item {
-      border: 1px solid $black;
-      padding: 5px;
+      border: 1px solid #adadad;
+      font-size: 13px;
+      padding: 2px 4px;
       border-radius: 5px;
+      margin: 0 3px;
+      &:first-child {
+        margin: 0 3px 0 0;
+      }
+    }
+  }
+
+  &__extended {
+    padding: 0 20px 20px 20px;
+    &-header {
+      padding: 15px 0;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+    }
+    &-description-header {
+      font-size: 19px;
+      font-weight: 700;
+      padding-bottom: 5px;
+    }
+    &-header-uni {
+      text-align: left;
+      font-size: 19px;
+      padding: 5px 0;
+    }
+
+    &-main-tech {
     }
   }
 }
