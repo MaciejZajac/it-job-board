@@ -11,13 +11,40 @@ import {
   GET_PRIVATE_JOBS_FAILED,
   DELETE_OFFER_REQUEST,
   DELETE_OFFER_SUCCEDED,
-  DELETE_OFFER_FAILED
+  DELETE_OFFER_FAILED,
+  SET_OFFER_FILTER,
+  SET_OFFER_FILTER_SPEC,
+  SET_OFFER_FILTER_CITY,
+  SET_OFFER_FILTER_TECH
 } from "../constants/JobsConstants";
 
-const offerReducer = (state = {}, action) => {
+const initialState = {
+  cityFilter: [],
+  specializationFilter: [],
+  techFilter: []
+};
+
+const offerReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ACTIVE_OFFER:
       return { ...state, activeOffer: action.payload };
+
+    case SET_OFFER_FILTER_CITY:
+      console.log("action", action);
+      return {
+        ...state,
+        cityFilter: [...action.payload.cityFilter]
+      };
+    case SET_OFFER_FILTER_SPEC:
+      return {
+        ...state,
+        specializationFilter: [...action.payload.specializationFilter]
+      };
+    case SET_OFFER_FILTER_TECH:
+      return {
+        ...state,
+        techFilter: [...action.payload.techFilter]
+      };
 
     // trzy przypadki: ZAWOŁANIE, SUKCES, PORAŻKA
     case GET_JOBS_OFFERS_REQUEST:

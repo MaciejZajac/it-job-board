@@ -71,7 +71,6 @@ class Router extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state.authReducer.token", state.authReducer.token);
   return {
     token: state.authReducer.token
   };

@@ -1,5 +1,5 @@
 .filter {
-  background-color: rgb(59, 53, 53);
+  background-color: $blue;
   &-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -25,7 +25,7 @@
 
     transition: all 0.25s ease-in-out;
     &--active {
-      color: rgb(59, 53, 53);
+      color: $blue;
       background-color: $white;
     }
   }

@@ -3,7 +3,6 @@ import React from "react";
 export default class OfferDetails extends React.Component {
   render() {
     const { item } = this.props;
-    console.log("item", item);
     return (
       <div className="offer__extended">
         <h4 className="offer__extended-header">

@@ -10,6 +10,7 @@ class OfferListItem extends React.Component {
 
     this.handleToggleChange = this.handleToggleChange.bind(this);
   }
+
   handleToggleChange(id) {
     if (
       this.props.activeOffer &&
@@ -49,8 +50,10 @@ class OfferListItem extends React.Component {
                 {item.minPayment} - {item.maxPayment} PLN, {item.city}
               </div>
               <div className="offer__tech">
-                {item.technologies.map(tech => (
-                  <span className="offer__tech-item">{tech}</span>
+                {item.technologies.map((tech, index) => (
+                  <span className="offer__tech-item" key={index}>
+                    {tech}
+                  </span>
                 ))}
               </div>
             </div>

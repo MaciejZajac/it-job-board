@@ -3,7 +3,10 @@ import {
   SET_ACTIVE_OFFER,
   GET_JOBS_OFFERS_REQUEST,
   GET_PRIVATE_JOBS_REQUEST,
-  DELETE_OFFER_REQUEST
+  DELETE_OFFER_REQUEST,
+  SET_OFFER_FILTER_SPEC,
+  SET_OFFER_FILTER_TECH,
+  SET_OFFER_FILTER_CITY
 } from "../constants/JobsConstants";
 
 export const addOfferRequest = payload => {
@@ -20,9 +23,29 @@ export const setActiveOffer = payload => {
   };
 };
 
+export const setOfferFilterCity = payload => {
+  return {
+    type: SET_OFFER_FILTER_CITY,
+    payload
+  };
+};
+export const setOfferFilterSpec = payload => {
+  return {
+    type: SET_OFFER_FILTER_SPEC,
+    payload
+  };
+};
+export const setOfferFilterTech = payload => {
+  return {
+    type: SET_OFFER_FILTER_TECH,
+    payload
+  };
+};
+
 export const getJobOffers = payload => {
   return {
-    type: GET_JOBS_OFFERS_REQUEST
+    type: GET_JOBS_OFFERS_REQUEST,
+    payload
   };
 };
 
