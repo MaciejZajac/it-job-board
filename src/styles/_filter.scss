@@ -1,0 +1,32 @@
+.filter {
+  background-color: rgb(59, 53, 53);
+  &-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px 0;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    color: $white;
+  }
+
+  &__item {
+    padding: 5px;
+    margin: 5px;
+    font-size: 13px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+
+    transition: all 0.25s ease-in-out;
+    &--active {
+      color: rgb(59, 53, 53);
+      background-color: $white;
+    }
+  }
+}

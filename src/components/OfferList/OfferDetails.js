@@ -9,11 +9,11 @@ export default class OfferDetails extends React.Component {
         <h4 className="offer__extended-header">
           Wymagany poziom doświadczenia:{" "}
         </h4>
-        <div className="offer__extended-experience">Junior</div>
+        <div className="offer__extended-exp">Junior</div>
         <br />
         <div>
-          <h4 className="offer__extended-header-uni">Opis stanowiska:</h4>
-          <div>
+          <h4 className="offer__extended-title">Opis stanowiska:</h4>
+          <div className="offer__extended-text">
             Poszukujemy osób, które tak jak my traktują programowanie jako
             pasję. Najważniejsza jest dla nas ciągła chęć rozwoju, również w
             czasie wolnym. Jeżeli poszukujesz nowinek, a ich testowanie sprawia
@@ -21,20 +21,18 @@ export default class OfferDetails extends React.Component {
           </div>
         </div>
         <div>
-          <h4 className="offer__extended-header-uni">Wymagany:</h4>
-          {item.technologies.map(tech => (
-            <span className="offer__tech-item">{tech}</span>
-          ))}
+          <h4 className="offer__extended-title">Wymagany:</h4>
+          <div className="offer__extended-text">
+            {item.technologies.map((tech, index) => (
+              <span className="offer__tech-item" key={index}>
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
         <div>
-          <h4 className="offer__extended-header-uni">Nice to have:</h4>
-          {item.technologies.map(tech => (
-            <span className="offer__tech-item">{tech}</span>
-          ))}
-        </div>
-        <div>
-          <h4 className="offer__extended-header-uni">O projekcie:</h4>
-          <div>
+          <h4 className="offer__extended-title">O projekcie:</h4>
+          <div className="offer__extended-text">
             We are looking for highly skilled & motivated Penetration Tester who
             enjoys seeing his/her work making a measurable impact to a business
             and disrupting the status quo. Our development squads consist of
@@ -42,6 +40,18 @@ export default class OfferDetails extends React.Component {
             responsible for the end-to-end delivery of the entire product.
           </div>
         </div>
+        <div>
+          <h4 className="offer__extended-title">Adres www:</h4>
+          <div className="offer__extended-text">
+            <a href="#">www.strona.pl</a>
+          </div>
+        </div>
+        {/* <div>
+          <h4 className="offer__extended-title">Sposób aplikowania:</h4>
+          <div className="offer__extended-text">
+            <a href="#">http://////</a>
+          </div>
+        </div> */}
       </div>
     );
   }

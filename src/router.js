@@ -1,5 +1,4 @@
 import React from "react";
-import App from "./App";
 import Layout from "./components/HOC/Layout";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -14,6 +13,8 @@ import ResetPassword from "./components/login/ResetPassword";
 import Reset from "./components/login/Reset";
 import AddOffer from "./components/OfferList/AddOffer";
 import Dashboard from "./components/dashboard/Dashboard";
+import Home from "./components/home/Home";
+import SearchPage from "./components/searchPage/SearchPage";
 
 const ProtectedRoute = ({
   component: Component,
@@ -36,25 +37,26 @@ class Router extends React.Component {
       <BrowserRouter history={history}>
         <Layout>
           <Switch>
-            <Route exact path="/" component={App} />
-            <Route exact path="/post-offer" component={AddOffer} />
-            {/* <ProtectedRoute
+            <Route exact path="/" component={Home} />
+            <Route exact path="/search" component={SearchPage} />
+            {/* <Route exact path="/post-offer" component={AddOffer} /> */}
+            <ProtectedRoute
               exact
               path="/post-offer"
               isAuthenticated={this.props.token}
               component={AddOffer}
-            /> */}
+            />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/resetPassword" component={ResetPassword} />
             <Route exact path="/reset/:token" component={Reset} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            {/* <ProtectedRoute
+            {/* <Route exact path="/dashboard" component={Dashboard} /> */}
+            <ProtectedRoute
               exact
               path="/dashboard"
               isAuthenticated={this.props.token}
               component={Dashboard}
-            /> */}
+            />
 
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />

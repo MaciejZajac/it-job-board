@@ -31,9 +31,11 @@ class OfferListItem extends React.Component {
             ? "offer__list-item--active"
             : ""
         }`}
-        onClick={() => this.handleToggleChange(item)}
       >
-        <div className="offer__main">
+        <div
+          className="offer__main"
+          onClick={() => this.handleToggleChange(item)}
+        >
           <div className="flex">
             <div>
               <div className="offer__logo">Logo</div>
