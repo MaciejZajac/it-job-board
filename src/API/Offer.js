@@ -1,7 +1,8 @@
 export const getJobOffers = params => {
+  console.log("params", { ...params });
   const graphqlQuery = {
     query: `
-            query {
+            query(filter: {...${params}}) {
               getOfferList {
                 jobOffers {
                   _id

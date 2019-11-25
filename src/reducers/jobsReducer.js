@@ -19,9 +19,7 @@ import {
 } from "../constants/JobsConstants";
 
 const initialState = {
-  cityFilter: [],
-  specializationFilter: [],
-  techFilter: []
+  //
 };
 
 const offerReducer = (state = initialState, action) => {
@@ -30,20 +28,19 @@ const offerReducer = (state = initialState, action) => {
       return { ...state, activeOffer: action.payload };
 
     case SET_OFFER_FILTER_CITY:
-      console.log("action", action);
       return {
         ...state,
-        cityFilter: [...action.payload.cityFilter]
+        cityFilter: action.payload.cityFilter
       };
     case SET_OFFER_FILTER_SPEC:
       return {
         ...state,
-        specializationFilter: [...action.payload.specializationFilter]
+        specializationFilter: action.payload.specializationFilter
       };
     case SET_OFFER_FILTER_TECH:
       return {
         ...state,
-        techFilter: [...action.payload.techFilter]
+        techFilter: action.payload.techFilter
       };
 
     // trzy przypadki: ZAWOŁANIE, SUKCES, PORAŻKA

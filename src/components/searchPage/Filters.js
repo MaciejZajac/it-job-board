@@ -4,7 +4,8 @@ import history from "../../history";
 import {
   setOfferFilterSpec,
   setOfferFilterTech,
-  setOfferFilterCity
+  setOfferFilterCity,
+  getJobOffers
 } from "../../actions/offerActions";
 
 class Filters extends Component {
@@ -25,44 +26,43 @@ class Filters extends Component {
   }
 
   setCityFilter = city => {
-    let newCityArr = this.props.cityFilter;
-    console.log("newCityArr", newCityArr);
-    if (newCityArr.includes(city)) {
-      newCityArr = newCityArr.filter(item => item !== city);
+    let newCity = this.props.cityFilter;
+    if (newCity === city) {
+      newCity = "";
     } else {
-      newCityArr.push(city);
+      newCity = city;
     }
 
-    this.props.setOfferFilterCity({ cityFilter: newCityArr });
+    this.props.setOfferFilterCity({ cityFilter: newCity });
   };
 
   setSpecFilter = spec => {
-    let newSpecArray = this.props.specializationFilter;
-    console.log("newSpecArray", newSpecArray);
-    if (newSpecArray.includes(spec)) {
-      newSpecArray = newSpecArray.filter(item => item !== spec);
+    let newSpec = this.props.specializationFilter;
+    if (newSpec === spec) {
+      newSpec = "";
     } else {
-      newSpecArray.push(spec);
+      newSpec = spec;
     }
 
-    console.log("newSpecArray1", newSpecArray);
-
-    this.props.setOfferFilterSpec({ specializationFilter: newSpecArray });
+    this.props.setOfferFilterSpec({ specializationFilter: newSpec });
   };
 
   setTechFilter = tech => {
-    let newTechArr = this.props.techFilter;
+    let newTech = this.props.techFilter;
 
-    if (!newTechArr) {
-      return;
-    }
-    if (newTechArr.includes(tech)) {
-      newTechArr = newTechArr.filter(item => item !== tech);
+    if (newTech === tech) {
+      newTech = "";
     } else {
-      newTechArr.push(tech);
+      newTech = tech;
     }
 
-    this.props.setOfferFilterTech({ techFilter: newTechArr });
+    this.props.setOfferFilterTech({ techFilter: newTech });
+
+    this.props.getJobOffers({
+      cityFilter: this.props.cityFilter,
+      specializationFilter: this.props.specializationFilter,
+      techFilter: this.props.techFilter
+    });
   };
 
   render() {
@@ -133,9 +133,8 @@ class Filters extends Component {
             Miejsce:
             {cityArray.map((cityObj, index) => (
               <div
-                className={`filter__item ${this.props.cityFilter.includes(
-                  cityObj.value
-                ) && "filter__item--active"}`}
+                className={`filter__item ${this.props.cityFilter ===
+                  cityObj.value && "filter__item--active"}`}
                 key={cityObj.value}
                 onClick={() => this.setCityFilter(cityObj.value)}
               >
@@ -148,7 +147,7 @@ class Filters extends Component {
             {specializationArray.map((jobObj, index) => (
               <div
                 className={`filter__item 
-                  ${this.props.specializationFilter.includes(jobObj.value) &&
+                  ${this.props.specializationFilter === jobObj.value &&
                     "filter__item--active"}
                   `}
                 key={jobObj.value}
@@ -162,9 +161,8 @@ class Filters extends Component {
             Technologia
             {techArray.map((techObj, index) => (
               <div
-                className={`filter__item ${this.props.techFilter.includes(
-                  techObj.value
-                ) && "filter__item--active"}`}
+                className={`filter__item ${this.props.techFilter ===
+                  techObj.value && "filter__item--active"}`}
                 key={techObj.value}
                 onClick={() => this.setTechFilter(techObj.value)}
               >
@@ -179,7 +177,6 @@ class Filters extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
   return {
     cityFilter: state.offerReducer.cityFilter,
     specializationFilter: state.offerReducer.specializationFilter,
@@ -190,7 +187,8 @@ function mapDispatchToProps(dispatch) {
   return {
     setOfferFilterCity: filter => dispatch(setOfferFilterCity(filter)),
     setOfferFilterSpec: filter => dispatch(setOfferFilterSpec(filter)),
-    setOfferFilterTech: filter => dispatch(setOfferFilterTech(filter))
+    setOfferFilterTech: filter => dispatch(setOfferFilterTech(filter)),
+    getJobOffers: filter => dispatch(getJobOffers(filter))
   };
 }
 
