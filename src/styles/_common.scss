@@ -12,6 +12,10 @@ body {
 
 .flex {
   display: flex;
+
+  &--align-center {
+    align-items: center;
+  }
 }
 
 .font-normal {

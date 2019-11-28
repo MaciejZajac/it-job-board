@@ -24,7 +24,6 @@ function* sagas() {
   yield takeLatest(GET_PRIVATE_JOBS_REQUEST, getPrivateJobOffersHandler);
   yield takeLatest(DELETE_OFFER_REQUEST, deleteOneOfferHandler);
   yield takeLatest(REGISTER_HANDLER_REQUEST, registerRequestHandler);
-  // yield takeLatest(GET_JOBS_OFFERS, getJobOffersHandler);
 }
 
 export default sagas;

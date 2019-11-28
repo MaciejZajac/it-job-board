@@ -1,19 +1,27 @@
 export const getJobOffers = params => {
-  console.log("params", { ...params });
   const graphqlQuery = {
     query: `
-            query(filter: {...${params}}) {
+            query {
               getOfferList {
                 jobOffers {
                   _id
                   companyCity
                   jobTitle
                   companyName
+                  experience 
+                  minPayment 
+                  maxPayment 
+                  companyDescription 
+                  projectDescription 
+                  companyPage 
+                  companyAdress 
+                  creationDate
                 }
               }
             }
           `
   };
+
   return fetch("http://localhost:8080/graphql", {
     method: "POST",
     headers: {
@@ -27,7 +35,19 @@ export const getJobOffers = params => {
     .catch(err => {});
 };
 
-export const addNewOffer = ({ companyName, companyCity, jobTitle }, token) => {
+export const addNewOffer = payload => {
+  const {
+    jobTitle,
+    companyCity,
+    companyName,
+    experience,
+    minPayment,
+    maxPayment,
+    companyDescription,
+    projectDescription,
+    companyPage,
+    companyAdress
+  } = payload.body;
   const graphqlQuery = {
     query: `
       mutation {
@@ -35,11 +55,26 @@ export const addNewOffer = ({ companyName, companyCity, jobTitle }, token) => {
           companyName: "${companyName}",
           companyCity: "${companyCity}",
           jobTitle: "${jobTitle}"
+          companyPage: "${companyPage}",
+          experience: "${experience}",
+          projectDescription: "${projectDescription}",
+          companyDescription: "${companyDescription}",
+          minPayment: "${minPayment}",
+          maxPayment: "${maxPayment}",
+          companyAdress: "${companyAdress}"
         }) {
           _id
-          jobTitle
           companyCity
+          jobTitle
           companyName
+          experience 
+          minPayment 
+          maxPayment 
+          companyDescription 
+          projectDescription 
+          companyPage 
+          companyAdress 
+          creationDate
         }
       }
     `
@@ -48,7 +83,7 @@ export const addNewOffer = ({ companyName, companyCity, jobTitle }, token) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + payload.token
     },
     body: JSON.stringify(graphqlQuery)
   });

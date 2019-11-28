@@ -50,11 +50,11 @@ class OfferListItem extends React.Component {
                 {item.minPayment} - {item.maxPayment} PLN, {item.city}
               </div>
               <div className="offer__tech">
-                {item.technologies.map((tech, index) => (
+                {/* {item.technologies.map((tech, index) => (
                   <span className="offer__tech-item" key={index}>
                     {tech}
                   </span>
-                ))}
+                ))} */}
               </div>
             </div>
           </div>

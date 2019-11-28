@@ -34,6 +34,7 @@ class Filters extends Component {
     }
 
     this.props.setOfferFilterCity({ cityFilter: newCity });
+    this.props.getJobOffers({ cityFilter: newCity });
   };
 
   setSpecFilter = spec => {
